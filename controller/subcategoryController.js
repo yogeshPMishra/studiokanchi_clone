@@ -49,7 +49,7 @@ exports.getAllSubcategoryByCategory = async(req,res,next) =>{
     }
 }
 
-// testing testing
+// testing complete
 exports.addSubcategory = async (req,res,next) =>{
     try {
         const {name,category_id} = req.body;
@@ -72,6 +72,7 @@ exports.addSubcategory = async (req,res,next) =>{
     }
 }
 
+// testing complete 
 exports.updateSubcategory = async (req,res,next)=>{
     try {
         const id = req.params.id;
@@ -107,6 +108,7 @@ exports.updateSubcategory = async (req,res,next)=>{
     }
 }
 
+// testing complete 
 exports.deleteSubcategory = async (req,res,next) =>{
     try {
         const id = req.params.id;

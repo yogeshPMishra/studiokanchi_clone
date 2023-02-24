@@ -27,8 +27,5 @@ const productattributeSchema = new mongoose.Schema({
         type : Date,
         default : Date.now()
     }
-
-
 })
-
 module.exports = mongoose.model("Productattribute",productattributeSchema)

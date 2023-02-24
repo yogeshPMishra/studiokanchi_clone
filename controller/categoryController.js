@@ -1,9 +1,8 @@
 const Category =  require('../models/Category')
-// const Subcategory = require('../models/Subcategory');
-// const Product = require('../model/Product');
 const cloudinary = require('cloudinary').v2;
 const CustomError = require('../utils/customError')
 
+// testing complete 
 exports.getAllCategory = async (req, res, next) =>{
     try {
         const category = await Category.find({}).sort({_id : -1});
@@ -16,6 +15,7 @@ exports.getAllCategory = async (req, res, next) =>{
     }
 }
 
+// testing complete 
 exports.addCategory = async (req, res, next) =>{
     try {
         const {name} = req.body
@@ -50,6 +50,7 @@ exports.addCategory = async (req, res, next) =>{
     }
 }
 
+// testing complete
 exports.updateCategory = async (req, res, next) =>{
     try {
         const id = req.params.id;
@@ -103,6 +104,7 @@ exports.updateCategory = async (req, res, next) =>{
     }
 }
 
+// testing complete 
 exports.deleteCategory = async (req, res, next) =>{
     try {
         const id = req.params.id;

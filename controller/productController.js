@@ -275,3 +275,16 @@ exports.getSingleProduct = async (req,res,next) =>{
 };
 
 
+exports.getRecomendedItems = async (req,res,next) =>{
+  try {
+      const products = await Product.find({}).limit(12).sort({_id:-1})
+      if(!products){
+        res.status(200).json({ message: "product not found" });
+      }
+      res.status(200).json({ products: products });
+  } catch (error) {
+     res.status(400).json({
+       message : error
+     })
+  }
+}
