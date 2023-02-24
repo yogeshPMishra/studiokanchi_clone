@@ -42,22 +42,7 @@ const productSchema = new mongoose.Schema({
         required : [true, "This field is required..."],
     },
     attributes : {
-        type: mongoose.Schema.ObjectId,
-        required : [true, "This field is required..."],
-        ref: 'Productattribute'
-    },
-    ratings:{
-        type : Number,
-        default: 0
-    },
-    numberOfReviews: {
-        type: Number,
-        default:0
-    },
-    productreview:{
-        type: mongoose.Schema.ObjectId,
-        required : [true, "This field is required..."],
-        ref: 'Productreview'
+        type: String
     },
     photo : {
         id : {

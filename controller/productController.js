@@ -1,10 +1,10 @@
 const Product = require("../models/Product");
 const Category = require("../models/Category");
 const Subcategory = require("../models/Subcategory");
-const Productreview = require('../models/Productreview');
 const cloudinary = require("cloudinary").v2;
 const CustomError = require("../utils/customError");
 
+// testing complete 
 exports.getAllProducts = async (req, res, next) => {
   try {
     const getAllproducts = await Product.aggregate([
@@ -26,29 +26,7 @@ exports.getAllProducts = async (req, res, next) => {
           foreignField: "_id",
           as: "joinedsubcategoryvalue",
         },
-      },
-      {
-        $unwind: "$joinedsubcategoryvalue",
-      },
-      {
-        $lookup: {
-          from: "productattributes",
-          localField: "attributes",
-          foreignField: "_id",
-          as: "joinedproductattributesvalue",
-        },
-      },
-      {
-        $unwind: "$joinedproductattributesvalue",
-      },
-      {
-        $lookup: {
-          from: "productreviews",
-          localField: "productreview",
-          foreignField: "_id",
-          as: "joinedproducteviewsvalue",
-        },
-      },
+      }
     ]).sort({ _id: -1 });
     if (getAllproducts.length == 0) {
       res.status(200).json({
@@ -64,8 +42,13 @@ exports.getAllProducts = async (req, res, next) => {
   }
 };
 
+// testing complete
 exports.addProducts = async (req, res, next) => {
   try {
+    if (!req.files) {
+      res.status(200).json({ error: "File is Missing..." });
+      return;
+    }
     const {
       name,
       category,
@@ -77,26 +60,25 @@ exports.addProducts = async (req, res, next) => {
       status,
       short_description,
       long_description,
-      attributes,
-      productreview,
     } = req.body;
 
-    if(!(name && category && subcategory && brand && price && splprice && quantity && status && short_description && long_description && attributes && productreview)){
+    if(!(name && category && subcategory && brand && price && splprice && quantity && short_description && long_description)){
        res.status(400).json({
         message : "All field most be required",
        })
-    }
+    } 
     if(!req.files.photo){
       res.status(400).json({
         message : "Photo field most be required",
        })
+       return
     }
     if(!req.files.photos){
       res.status(400).json({
         message : "Photos field most be required",
       })
+      return
     }
-    
     const uploadphoto = await cloudinary.uploader.upload(req.files.photo.tempFilePath,{
       folder: "products",
     })
@@ -116,29 +98,11 @@ exports.addProducts = async (req, res, next) => {
       });
       let image = {
           id:result.public_id,
-          secure_id: result.secure_url
+          secure_url: result.secure_url
       }
       photos.push(image);
     }
-    let ratings;
-    let numofreviews;
-
-    if( await Productreview.find() == []){
-      ratings = 0;
-      numofreviews = 0;
-    }
-    else{
-     const ratingarr = await Productreview.find({rating:1,_id:0})
-     const numberofreviews = await Productreview.find();
-     let allrating = 0;
-     for(ratingarr of i){
-          allrating =+ i.rating;
-
-
-     }
-        ratings = allrating/ratingarr.length;
-        numofreviews = numberofreviews.length
-    }
+    console.log(photos);
     const product = await Product.create({
       name,
       category,
@@ -150,9 +114,6 @@ exports.addProducts = async (req, res, next) => {
       status,
       short_description,
       long_description,
-      attributes,
-      ratings:ratings,
-      numberOfReviews:numofreviews,
       photo:{
         id:uploadphoto.public_id,
         secure_url : uploadphoto.secure_url
@@ -166,12 +127,12 @@ exports.addProducts = async (req, res, next) => {
       success: true,
       product
     })
-
     } catch (error) {
     return next(new CustomError(error, 500));
   }
 };
 
+// testing complete 
 exports.deleteProduct = async (req,res,next) =>{
   try {
     const id = req.params.id;
@@ -197,9 +158,15 @@ exports.deleteProduct = async (req,res,next) =>{
   }
 }
 
+// testing complete 
 exports.updateProduct = async (req, res, next) => {
   try {
     const id = req.params.id;
+    console.log(req.params.id);
+    if(!id){
+      res.json({ error: " Id is not valid..." });
+      return;
+    }
     const product = await Product.findById(id);
     const newData = {
       name: req.body.name,
@@ -212,11 +179,7 @@ exports.updateProduct = async (req, res, next) => {
       status: req.body.status,
       short_description: req.body.short_description,
       long_description: req.body.long_description,
-      ratings:product.ratings,
-      numberOfReviews:product.numberOfReviews
     };
-
-  
 
     if (!product) {
       res.json({ error: "Product Id is not valid..." });
@@ -226,7 +189,7 @@ exports.updateProduct = async (req, res, next) => {
     if (req.files) {
       if (req.files.photo) {
         // Deleting the previous image from cloudinary
-        cloudinary.uploader.destroy(Product.photo.id);
+        cloudinary.uploader.destroy(product.photo.id);
         // Inserting new data to cloudinary
         result = await cloudinary.uploader.upload(req.files.photo.tempFilePath, {
           folder: "products",
@@ -236,10 +199,11 @@ exports.updateProduct = async (req, res, next) => {
           id: result.public_id,
           secure_url: result.secure_url,
         };
-      } else {
+      } 
+      else {
         newData.photo = {
-          id: Product.photo.id,
-          secure_url: Product.photo.secure_url,
+          id: product.photo.id,
+          secure_url: product.photo.secure_url,
         };
       }
 
@@ -253,8 +217,8 @@ exports.updateProduct = async (req, res, next) => {
           multipleimage = req.files.photos;
         }
 
-        let photos = [];
-        let existingPhotos = Product.photos;
+        // let photos = [];
+        let existingPhotos = product.photos;
         for (let index = 0; index < multipleimage.length; index++) {
           let result;
           const file = multipleimage[index];
@@ -270,6 +234,7 @@ exports.updateProduct = async (req, res, next) => {
           newData.photos = existingPhotos;
         }
       }
+
     }
 
     const productUpdate = await Product.findByIdAndUpdate(id, newData, {
@@ -287,4 +252,26 @@ exports.updateProduct = async (req, res, next) => {
     res.json({ error: error.message });
   }
 };
+
+// testing complete 
+exports.getSingleProduct = async (req,res,next) =>{
+    try {
+      const id = req.params.id;
+      const product = await Product.findById(id).populate({
+        path: "category",
+        model: Category,
+      }).populate({
+        path:"subcategory",
+        model:Subcategory
+      }).sort({_id: -1});
+      if(!product){
+        res.status(200).json({message:'Product not found'})
+      }
+      res.status(200).json({success:true,product:product})
+    } catch (error) {
+      res.status(500).json({success:false,message:"Something went to wrong"});
+    }
+
+};
+
 

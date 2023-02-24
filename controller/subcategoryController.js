@@ -2,6 +2,7 @@ const Subcategory = require('../models/Subcategory');
 const Category  = require('../models/Category')
 const CustomError = require('../utils/customError')
 
+// testing complete 
 exports.getAllSubcategory = async (req,res,next) =>{
     try {
         const subcategory = await Subcategory.aggregate([
@@ -27,17 +28,13 @@ exports.getAllSubcategory = async (req,res,next) =>{
         return next(new CustomError(error,500))
     }
 }
-
+// testing complete
 exports.getAllSubcategoryByCategory = async(req,res,next) =>{
     try {
         const id = req.params.id;
-        const subcategoryListByCategory =  await Subcategory.aggregate({
-            $lookup:{
-                from: "categories",
-                localField:"category_id",
-                foreignField:id,
-                as:"category"
-            }
+        const subcategoryListByCategory =  await Subcategory.find({category_id:id}).populate({
+            path: "category_id",
+            model: Category,
         })
         if(!subcategoryListByCategory){
             return next(new CustomError("No such data found",400))
@@ -52,6 +49,7 @@ exports.getAllSubcategoryByCategory = async(req,res,next) =>{
     }
 }
 
+// testing testing
 exports.addSubcategory = async (req,res,next) =>{
     try {
         const {name,category_id} = req.body;
