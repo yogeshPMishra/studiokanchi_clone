@@ -1,0 +1,26 @@
+const User = require('../models/User');
+const CustomError = require('../utils/customError');
+const jwt = require('jsonwebtoken');
+exports.isLoggedIn = async (req,res,next)=>{
+ try {
+    const token = req.cookies.token || req.header("Authorization").replace("Bearer ", "");
+    if(!token){
+        return next(new CustomError('Login first to access thgis page',401))
+    }
+   const decoded =  jwt.verify(token,process.env.JWT_SECRET);
+   req.userdetails = await User.findById(decoded.id)
+   next();
+
+ } catch (error) {
+    return next(new CustomError('Something went to wrong',500))
+ }
+}
+
+exports.customRole = (...roles)=>{
+   return (req,res,next)=>{
+      if(!roles.includes(req.userdetails.role)){
+        return next(new CustomError('You are not allowed for this resouce',403))
+      }
+      next()
+   }
+}
