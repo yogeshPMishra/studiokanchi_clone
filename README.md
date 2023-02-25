@@ -1,7 +1,5 @@
 # API References
 
-# User Routes
-
 ## Setup
  
 ```
@@ -9,6 +7,8 @@
     $ cd studiokanchi_clone
     $ npm install
 ```
+
+# User Routes :
 
 ###### BaseUrl
   `GET :  http://localhost:4000/api/v1 `
