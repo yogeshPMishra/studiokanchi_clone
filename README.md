@@ -6,6 +6,7 @@
     $ git clone https://github.com/yogeshPMishra/studiokanchi_clone.git
     $ cd studiokanchi_clone
     $ npm install
+    $ npm run dev
 ```
 
 # User Routes :
