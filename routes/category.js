@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const {isLoggedIn} = require('../middleware/userMiddleware');
 const {
     getAllCategory,
     addCategory,
@@ -8,9 +8,9 @@ const {
     deleteCategory
  } = require('../controller/categoryController');
 
- router.route('/getcategory').get(getAllCategory);
- router.route('/addcategory').post(addCategory);
- router.route('/updatecategory/:id').put(updateCategory);
- router.route('/deletecategory/:id').delete(deleteCategory);
+ router.route('/getcategory').get(isLoggedIn,getAllCategory);
+ router.route('/addcategory').post(isLoggedIn,addCategory);
+ router.route('/updatecategory/:id').put(isLoggedIn,updateCategory);
+ router.route('/deletecategory/:id').delete(isLoggedIn,deleteCategory);
 
  module.exports = router;

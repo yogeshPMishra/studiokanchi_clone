@@ -3,6 +3,7 @@ const Category = require("../models/Category");
 const Subcategory = require("../models/Subcategory");
 const cloudinary = require("cloudinary").v2;
 const CustomError = require("../utils/customError");
+const Productattribute = require('../models/Productattribute');
 
 // testing complete 
 exports.getAllProducts = async (req, res, next) => {
@@ -274,7 +275,7 @@ exports.getSingleProduct = async (req,res,next) =>{
 
 };
 
-
+// testing complete 
 exports.getRecomendedItems = async (req,res,next) =>{
   try {
       const products = await Product.find({}).limit(12).sort({_id:-1})
@@ -288,3 +289,34 @@ exports.getRecomendedItems = async (req,res,next) =>{
      })
   }
 }
+
+// testing complete
+exports.removeMultipleImage = async (req, res, next) => {
+  try {
+    var queryobj = require("url").parse(req.url, true).query;
+    const id = queryobj.product_id;
+    let image_id = req.params.id;
+    const product = await Product.findById(id);
+
+    if (!product) {
+      res.json({ error: "No Product Found On This ID..." });
+      return;
+    }
+    for (let index = 0; index < product.photos.length; index++) {
+      if (image_id == product.photos[index]._id) {
+        // Deleting the previous image from cloudinary
+        cloudinary.uploader.destroy(product.photos[index].id);
+
+        // Saving the product after deleting the image
+        product.photos.splice(index, 1);
+      }
+    }
+    await product.save({ validateBeforeSave: false });
+    res.status(200).json({message : "Photo remove successfully !"})
+  }
+  catch(error){
+    res.status(500).json({message : error})
+  }
+}
+
+

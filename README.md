@@ -1,41 +1,106 @@
-User Routes
-    baseUrl :  http://localhost:4000/api/v1                                       method : get
-    loginUrl : http://localhost:4000/api/v1/login                                 method : post 
-    signupUrl : http://localhost:4000/api/v1/signup                               method : post
-    signupUrl : http://localhost:4000/api/v1/logout                               method : get
-    forgotpasswrodUrl : http://localhost:4000/api/v1forgotpassword                method : post
-    resetpasswordUrl : http://localhost:4000/api/v1/password/reset/:token         method : post
-    dashboardUrl : http://localhost:4000/api/v1/userdashboard                     method : get
-    updatepasswordUrl : http://localhost:4000/api/v1/password/update              method : put
-    userdashboardUpdateUrl : http://localhost:4000/api/v1/userdashboard/update    method : put
+# The largest heading
 
-Manager Routes :
-    viewalluserUrl : http://localhost:4000/api/v1/manager/users                   method : get
+## User Routes
 
-Admin route :
-    viewalluserUrl : http://localhost:4000/api/v1/admin/users                     method : get
-    viewsingleuserUrl : http://localhost:4000/api/v1/admin/user/:id               method : get
-    updatesingleuserUrl : http://localhost:4000/api/v1/admin/user/:id             method : put
-    deletesingleuserUrl : http://localhost:4000/api/v1/admin/user/:id             method : delete  
+## Setup
+ 
+```
+    $ git clone https://github.com/yogeshPMishra/studiokanchi_clone.git
+    $ cd studiokanchi_clone
+    $ npm install
+```
+
+###### BaseUrl
+  `GET :  http://localhost:4000/api/v1 `
+
+###### loginUrl :
+  `POST :  http://localhost:4000/api/v1/login` 
+
+###### signupUrl : 
+  `POST : http://localhost:4000/api/v1/signup`    
+
+###### signupUrl :
+  `GET : http://localhost:4000/api/v1/logout`     
+
+###### forgotpasswrodUrl :
+  `POST : http://localhost:4000/api/v1forgotpassword `                           
+
+###### resetpasswordUrl : 
+  `POST : http://localhost:4000/api/v1/password/reset/:token`
+
+##### dashboardUrl :  
+  `GET : http://localhost:4000/api/v1/userdashboard`              
+
+##### updatepasswordUrl :
+  `PUT : http://localhost:4000/api/v1/password/update`  
+
+##### userdashboardUpdateUrl :
+  `PUT : http://localhost:4000/api/v1/userdashboard/update ` 
 
 
-Products Routes : 
-    getproductUrl :  http://localhost:4000/api/v1/product/getproducts             method : get
-    getSinglProducteUrl : http://localhost:4000/api/v1/product/getproduct/:id     method : get
-    getrecommendedProductsUrl : http://localhost:4000/api/v1/product/getrecomendeditems  method : get
-    addproductsUrl :  http://localhost:4000/api/v1/product/addproduct             method : post
-    updateproductsUrl :  http://localhost:4000/api/v1/product/updateproduct/:id   method : put
-    deleteproductsUrl :  http://localhost:4000/api/v1/product/deleteproduct/:id   method : delete
+## Manager Routes :
+  ###### viewalluserUrl :
+   `GET : http://localhost:4000/api/v1/manager/users` 
 
-Category Routes :
-    getcategoryUrl : http://localhost:4000/api/v1/category/getcategory            method : get
-    addcategoryUrl : http://localhost:4000/api/v1/category/addcategory            method : post
-    updatecategoryUrl : http://localhost:4000/api/v1/category/updatecategory/:id  method : put
-    deletecategoryUrl : http://localhost:4000/api/v1/category/deletecategory/:id  method : delete
+## Admin route :
+  ###### viewalluserUrl :
+   `GET : http://localhost:4000/api/v1/admin/users `
 
-Subcategory Routes :
-   getcategoryUrl :  http://localhost:4000/api/v1/subcategory/getsubcategory      method : get
-   addcategoryUrl : http://localhost:4000/api/v1/subcategory/addsubcategory       method : post
-   updatecategoryUrl : http://localhost:4000/api/v1/subcategory/updatesubcategory/:id   method : put
-   deletecategoryUrl : http://localhost:4000/api/v1/subcategory/deletesubcategory/:id   method : delete
-   getallsubcategorybycategoryUrl : http://localhost:4000/api/v1/subcategory/getallsubcategorybycategory/:id  method : get
+  ###### viewsingleuserUrl :
+  `GET : http://localhost:4000/api/v1/admin/user/:id ` 
+
+  ###### updatesingleuserUrl :
+  `GET : http://localhost:4000/api/v1/admin/user/:id ` 
+
+  ###### deletesingleuserUrl :
+  `GET : http://localhost:4000/api/v1/admin/user/:id ` 
+
+
+## Products Routes : 
+  ###### getproductUrl : 
+  `GET : http://localhost:4000/api/v1/product/getproducts`
+
+  ###### getSinglProducteUrl :
+  `GET : http://localhost:4000/api/v1/product/getproduct/:id `
+
+  ###### getrecommendedProductsUrl :  
+  `GET : http://localhost:4000/api/v1/product/getrecomendeditems`
+
+  ###### addproductsUrl :
+  `POST : http://localhost:4000/api/v1/product/addproduct`
+
+  ###### updateproductsUrl :
+  `PUT : http://localhost:4000/api/v1/product/updateproduct/:id` 
+
+  ###### deleteproductsUrl :
+  `DELETE : http://localhost:4000/api/v1/product/deleteproduct/:id ` 
+
+## Category Routes :
+  ###### getcategoryUrl : 
+  `GET : http://localhost:4000/api/v1/category/getcategory` 
+
+  ###### addcategoryUrl : 
+   `POST : http://localhost:4000/api/v1/category/addcategory`
+
+  ###### updatecategoryUrl :
+   `PUT : http://localhost:4000/api/v1/category/updatecategory/:id`
+
+  ######  deletecategoryUrl :
+  `DELETE : http://localhost:4000/api/v1/category/deletecategory/:id `
+
+## Subcategory Routes :
+  ###### getcategoryUrl :
+   `GET : http://localhost:4000/api/v1/subcategory/getsubcategory`
+
+  ###### addcategoryUrl :
+   `POST : http://localhost:4000/api/v1/subcategory/addsubcategory`
+
+  ###### updatecategoryUrl :
+   `PUT :http://localhost:4000/api/v1/subcategory/updatesubcategory/:id `
+
+  ###### deletecategoryUrl :
+   `DELETE :  http://localhost:4000/api/v1/subcategory/deletesubcategory/:id`
+
+  ###### getallsubcategorybycategoryUrl :
+   `GET : http://localhost:4000/api/v1/subcategory/getallsubcategorybycategory/:id`
+
