@@ -1,6 +1,6 @@
-# The largest heading
+# API References
 
-## User Routes
+# User Routes
 
 ## Setup
  
@@ -39,6 +39,7 @@
 
 
 ## Manager Routes :
+
   ###### viewalluserUrl :
    `GET : http://localhost:4000/api/v1/manager/users` 
 
@@ -57,6 +58,7 @@
 
 
 ## Products Routes : 
+
   ###### getproductUrl : 
   `GET : http://localhost:4000/api/v1/product/getproducts`
 
@@ -76,6 +78,7 @@
   `DELETE : http://localhost:4000/api/v1/product/deleteproduct/:id ` 
 
 ## Category Routes :
+
   ###### getcategoryUrl : 
   `GET : http://localhost:4000/api/v1/category/getcategory` 
 
@@ -89,6 +92,7 @@
   `DELETE : http://localhost:4000/api/v1/category/deletecategory/:id `
 
 ## Subcategory Routes :
+
   ###### getcategoryUrl :
    `GET : http://localhost:4000/api/v1/subcategory/getsubcategory`
 
