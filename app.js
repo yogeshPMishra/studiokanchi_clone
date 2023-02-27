@@ -5,6 +5,9 @@ const app = express();
 const morgan = require('morgan');
 const cookieparser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
+const cors = require('cors');
+
+
 
 //temp check
 app.set('view engine',"ejs")
@@ -15,6 +18,9 @@ app.use(cookieparser());
 app.use(fileUpload({
     useTempFiles:true,
     tempFileDir:"/tmp/"
+}));
+app.use(cors({
+    origin : "*"
 }));
 
 // morgan middleware 

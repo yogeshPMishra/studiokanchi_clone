@@ -108,4 +108,6 @@
 
   ###### getallsubcategorybycategoryUrl :
    `GET : http://localhost:4000/api/v1/subcategory/getallsubcategorybycategory/:id`
-
+   
+  ###### removesinglephotofromphotosUrl:
+   `GET : http://localhost:4000/api/v1/remove-multiple-image/:id`

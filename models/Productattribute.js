@@ -10,6 +10,11 @@ const productattributeSchema = new mongoose.Schema({
         type:String,
         required:[true,"Attribute Name  is required"],
     },
+    attribute_value : {
+        type : String,
+        required : [true, "This field is required..."],
+        maxLength : [40, "Maximum 40 characters allowed..."]
+    },
     photos : [
         {
             id : {
