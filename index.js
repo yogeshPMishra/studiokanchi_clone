@@ -3,7 +3,6 @@ const connectWithDb = require('./config/db');
 require('dotenv').config();
 const cloudinary = require('cloudinary');
 
-
 // connect with database
 connectWithDb();
 

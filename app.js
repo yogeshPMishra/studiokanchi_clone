@@ -1,4 +1,4 @@
-// import all download package here 
+// import all download aand custom module package here 
 const express = require('express');
 require('dotenv').config();
 const app = express();
@@ -7,18 +7,16 @@ const cookieparser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
 
-
-
-//temp check
-app.set('view engine',"ejs")
-
 // cookies and middleware
-
 app.use(cookieparser());
+
+// fileupload middleware
 app.use(fileUpload({
     useTempFiles:true,
     tempFileDir:"/tmp/"
 }));
+
+// cors middleware
 app.use(cors({
     origin : "*"
 }));
@@ -28,6 +26,8 @@ app.use(morgan(`tiny`));
 
 // regular middleware
 app.use(express.json())
+
+// urlencoded middleware
 app.use(express.urlencoded({extended:true}))
 
 // import  all router here 

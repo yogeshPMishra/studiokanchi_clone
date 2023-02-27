@@ -6,13 +6,13 @@ exports.isLoggedIn = async (req, res, next) => {
     const token =
       req.cookies.token || req.header("Authorization").replace("Bearer ", "");
     if (!token) {
-      return next(new CustomError("Login first to access thgis page", 401));
+      return next(new CustomError("Login first to access this page", 401));
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.userdetails = await User.findById(decoded.id);
     next();
   } catch (error) {
-    return next(new CustomError("Something went to wrong", 500));
+    res.status(500).json({error : error});
   }
 };
 
