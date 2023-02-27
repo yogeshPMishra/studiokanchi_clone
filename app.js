@@ -45,9 +45,4 @@ app.use('/api/v1/subcategory',subcategory)
 app.use('/api/v1/category',category) 
 
 
-// demo ejs register routes 
-app.get('/signuptext',(req,res)=>{
-    res.render('register');
-})
-
 module.exports = app;
