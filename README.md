@@ -110,4 +110,26 @@
    `GET : http://localhost:4000/api/v1/subcategory/getallsubcategorybycategory/:id`
    
   ###### removesinglephotofromphotosUrl:
-   `GET : http://localhost:4000/api/v1/remove-multiple-image/:id`
+   `GET : http://localhost:4000/api/v1/product/remove-multiple-image/:id`
+
+  ###### getAllProductsByCategoryUrl :
+   `GET : http://localhost:4000/api/v1/product/get-attribute/:id`
+  
+  ###### removeAttributeValue :
+   `GET : http://localhost:4000/api/v1/product/remove-attribute-value/:id`
+  
+  ###### removeAttribute : 
+   `GET : http://localhost:4000/api/v1/product/remove-attribute/:id`
+
+  ###### getProductsByAttributes :
+   `GET : http://localhost:4000/api/v1/product/get-products-by-attribute/:product_id/:attribute_name/:attribute_value`
+
+  ###### Testing route :
+   `GET : http://localhost:4000/api/v1/`
+  
+  ###### NewArrival Product:
+   `GET : http://localhost:4000/api/v1/newarrival`
+  
+  ###### Best Seller Product : 
+   `GET : http://localhost:4000/api/v1/bestsellerproduct`
+
