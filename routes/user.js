@@ -17,8 +17,6 @@ const {
   adminDeleteOneUser
 } = require("../controller/userController");
 const { isLoggedIn, customRole } = require("../middleware/userMiddleware");
-const { route } = require("./home");
-
 router.route("/signup").post(signup);
 router.route("/login").post(login);
 router.route("/logout").get(logout);

@@ -45,5 +45,4 @@ app.use('/api/v1/subcategory',subcategory)
 app.use('/api/v1/category',category) 
 app.use('/api/v1/shipping',shipping) 
 
-
 module.exports = app;
