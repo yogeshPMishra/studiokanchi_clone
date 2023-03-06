@@ -1,4 +1,5 @@
 const express = require('express')
+const { isLoggedIn, customRole } = require("../middleware/userMiddleware");
 const router = express.Router();
 const {
     insertShippingDetails,
@@ -6,8 +7,8 @@ const {
     getSingleShippingDetails
 } =require('../controller/shippingController');
 
-router.route('/addnewshipping').post( insertShippingDetails);
-router.route('/getallorders').get( getAllShipping);
-router.route('/getsingleorder/:id').get(getSingleShippingDetails);
+router.route('/addnewshipping').post(isLoggedIn, insertShippingDetails);
+router.route('/getallorders').get(isLoggedIn, getAllShipping);
+router.route('/getsingleorder/:id').get(isLoggedIn,getSingleShippingDetails);
 
 module.exports = router;
