@@ -36,13 +36,14 @@ const user = require('./routes/user')
 const product = require('./routes/product')
 const subcategory = require('./routes/subcategory')
 const category = require('./routes/category')
-
+const shipping = require('./routes/shipping');
 // router middleware  
 app.use('/api/v1',home)
 app.use('/api/v1',user) 
 app.use('/api/v1/product',product) 
 app.use('/api/v1/subcategory',subcategory) 
 app.use('/api/v1/category',category) 
+app.use('/api/v1/shipping',shipping) 
 
 
 module.exports = app;

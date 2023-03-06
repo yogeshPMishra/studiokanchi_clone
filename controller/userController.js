@@ -23,7 +23,7 @@ exports.signup = async (req, res, next) => {
     if (!email) {
       return next(new CustomError("Please send email", 400));
     }
-    if (!email || !name || !password) {
+    if (!(email || name || password)) {
       return next("Name, Email and password are required", 400);
     }
     const user = await User.create({
@@ -106,7 +106,7 @@ exports.forgotPassword = async (req, res, next) => {
     user.forgotPasswordToken = undefined;
     user.forgotPasswordExpiry = undefined;
     await user.save({ validateBeforeSave: false });
-    return next(new CustomError(error.message, 500));
+    res.status(200).json({error :error.message});
   }
 };
 
